@@ -2,7 +2,7 @@ import tkinter as tk
 
 okno = tk.Tk()
 okno.title("Szyfr cezara")
-okno.geometry("300x300")
+okno.geometry("400x400")
 okno.resizable(False, False)
 
 text1 = tk.StringVar()
@@ -19,17 +19,23 @@ def szyfr():
             cezar_tekst += chr((ord(literka) + klucz - 97) % 26 + 97)
         else:
             cezar_tekst += literka  
+    wynik = funkcja(cezar_tekst)     
+    tekst.delete("1.0", tk.END)  
+    tekst.insert(tk.END, wynik) 
+def  funkcja(cezar_tekst):
+    return f"Szyfrem do tego kodu jest: {cezar_tekst}"
 
-    label4 = tk.Label(okno, text=cezar_tekst)
-    label4.grid(row=3, column=0)
 
 label1 = tk.Label(okno, text="Zaszyfruj wiadomość")
-label1.grid(row=0, column=0)
+label1.pack(pady=10)
 
-entry1 = tk.Entry(okno, textvariable=text1)
-entry1.grid(row=1, column=0)
+entry1 = tk.Entry(okno, textvariable=text1,width=30)
+
+entry1.pack(ipady=20)
 
 b1 = tk.Button(okno, text="Szyfruj", command=szyfr)
-b1.grid(row=2, column=0)
+b1.pack()
 
+tekst = tk.Text(okno, height=20, width=30)
+tekst.pack(pady=20)
 okno.mainloop()
